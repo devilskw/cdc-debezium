@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "68f09db6-e76b-4126-bf2e-6bef95857cc6",
+		"name": "cdc-kafka-topic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createConector",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"name\": \"tb_test-connector\",\r\n \"config\": {\r\n \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\r\n \"tasks.max\": \"1\",\r\n \"database.hostname\": \"dbcdc\",\r\n \"database.port\": \"5432\",\r\n \"database.user\": \"postgres\",\r\n \"database.password\": \"password@123456\",\r\n \"database.dbname\" : \"testdb\",\r\n \"database.server.name\": \"dbserver1\",\r\n \"plugin.name\": \"pgoutput\",\r\n \"database.whitelist\": \"public.tb_test\",\r\n \"database.history.kafka.bootstrap.servers\": \"kafka:9092\",\r\n \"database.history.kafka.topic\": \"schema-changes.tb_test\"\r\n }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/connectors",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showConectorStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connectors/tb_test-connector/status",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"tb_test-connector",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
