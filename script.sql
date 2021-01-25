@@ -1,0 +1,12 @@
+-- USE testdb
+-- GO
+CREATE TABLE tb_test (id serial PRIMARY KEY, name VARCHAR(50) NOT NULL, age INTEGER DEFAULT 0 )
+-- GO
+-- USE testdb
+-- GO
+-- EXEC sys.sp_cdc_enable_db
+-- GO
+-- USE testdb
+-- GO
+-- EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N't1', @role_name = NULL, @filegroup_name = N'PRIMARY'
+-- GO
