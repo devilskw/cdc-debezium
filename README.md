@@ -12,8 +12,10 @@ Obs.: Docker compose will create the containers
 
 # Instructions by Kazuo
 - docker build . -t cdc:latest
+- [AT 1st TIME] docker-compose up dbcdc
+- [AT 1st TIME] cat script.sql | docker exec -i postgres-cdc psql -U "postgres" -d "testdb" -W "password@123456" 
+- docker-compose down
 - docker-compose up
-- cat script.sql | docker exec -i postgres-cdc psql -U "postgres" -d "testdb" -W "password@123456" 
 - execute postman post method to create topic
 - verify kafka topics:
 	- docker exec -it kafka bash
